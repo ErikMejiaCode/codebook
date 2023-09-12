@@ -1,3 +1,4 @@
+import { useTitle } from "../hooks/useTitle";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Rating } from "../components";
@@ -5,6 +6,7 @@ import { Rating } from "../components";
 export const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  useTitle(product.name);
 
   useEffect(() => {
     async function fetchProducts() {
