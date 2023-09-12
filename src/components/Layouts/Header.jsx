@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import Logo from "../../assets/logo2.png";
 import { Link } from "react-router-dom";
+import { Search } from "../Sections/Search";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
+  const [searchSection, setSearchSection] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -32,7 +34,10 @@ export const Header = () => {
               onClick={() => setDarkMode(!darkMode)}
               className="hover:text-gray-500 cursor-pointer text-xl text-gray-700 dark:text-white dark:hover:text-slate-300 mr-5 bi bi-gear-wide-connected"
             ></span>
-            <span className="dark:hover:text-slate-300 hover:text-gray-500 cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
+            <span
+              onClick={() => setSearchSection(!searchSection)}
+              className="dark:hover:text-slate-300 hover:text-gray-500 cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"
+            ></span>
             <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
               <span className="dark:hover:text-slate-300 hover:text-gray-500 text-2xl bi bi-cart-fill relative">
                 <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
@@ -44,6 +49,7 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+      {searchSection && <Search setSearchSection={setSearchSection} />}
     </header>
   );
 };
