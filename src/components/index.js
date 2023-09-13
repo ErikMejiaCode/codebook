@@ -6,3 +6,6 @@ export { ProductCard } from "./Elements/ProductCard";
 export { Rating } from "./Elements/Rating";
 
 export { ScrollToTop } from "./Other/SrollToTop";
+
+export { DropdownLoggedIn } from "./Elements/DropdownLoggedIn";
+export { DropdownLoggedOut } from "./Elements/DropdownLoggedOut";

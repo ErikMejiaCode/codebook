@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ProductCard } from "../../components/";
 import { FilterBar } from "./components/FilterBar";
 import { useLocation } from "react-router-dom";
@@ -11,6 +11,7 @@ export const ProductList = () => {
   const [show, setShow] = useState(false);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
+  const clickRef = useRef();
   useTitle("Explore eBook Collections");
 
   useEffect(() => {
@@ -26,6 +27,22 @@ export const ProductList = () => {
     fetchProducts();
   }, [searchTerm]);
 
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      //If the menu is open and the clicked target is not within the menu, close the menu
+      if (show && clickRef.current && !clickRef.current.contains(e.target)) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      //Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [show]);
+
   return (
     <main>
       <section className="my-5">
@@ -36,6 +53,7 @@ export const ProductList = () => {
           <span>
             <button
               onClick={() => setShow(!show)}
+              ref={clickRef}
               id="dropdownMenuIconButton"
               data-dropdown-toggle="dropdownDots"
               className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-700"

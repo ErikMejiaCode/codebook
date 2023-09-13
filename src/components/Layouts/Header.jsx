@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Logo from "../../assets/logo2.png";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
+import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
   const [searchSection, setSearchSection] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+  const clickRef = useRef();
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -18,6 +21,26 @@ export const Header = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      //If the menu is open and the clicked target is not within the menu, close the menu
+      if (
+        dropdown &&
+        clickRef.current &&
+        !clickRef.current.contains(e.target)
+      ) {
+        setDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      //Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [dropdown]);
 
   return (
     <header>
@@ -45,7 +68,12 @@ export const Header = () => {
                 </span>
               </span>
             </Link>
-            <span className="dark:hover:text-slate-300 hover:text-gray-500 bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+            <span
+              ref={clickRef}
+              onClick={() => setDropdown(!dropdown)}
+              className="dark:hover:text-slate-300 hover:text-gray-500 bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
+            ></span>
+            {dropdown && <DropdownLoggedIn />}
           </div>
         </div>
       </nav>
