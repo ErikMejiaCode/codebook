@@ -18,7 +18,13 @@ export const filterReducer = (state, action) => {
       return { ...state, onlyInStock: payload.onlyInStock };
 
     case "CLEAR_FILTER":
-      return;
+      return {
+        ...state,
+        onlyInStock: payload.onlyInStock,
+        bestSellerOnly: payload.bestSellerOnly,
+        sortBy: payload.sortBy,
+        ratings: payload.ratings,
+      };
 
     default:
       throw new Error("No Case Found");
