@@ -31,7 +31,7 @@ export const Header = ({ darkMode, setDarkMode }) => {
 
   return (
     <header>
-      <nav className="bg-white dark:bg-gray-900">
+      <nav className="bg-white dark:bg-darkAccent">
         <div className="border-b border-slate-200 dark:border-b-0 flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-5">
           <Link to="/" className="flex items-center">
             <img src={Logo} className="mr-3 h-10" alt="CodeBook Logo" />
