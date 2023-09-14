@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import HeroImg from "../../../assets/images/hero.jpg";
+import LightImg from "../../../assets/images/hero.avif";
 
-export const Hero = () => {
+export const Hero = ({ darkMode }) => {
   return (
     <section className="flex flex-col lg:flex-row dark:text-slate-100 items-center">
       <div className="text my-5">
@@ -20,11 +21,20 @@ export const Hero = () => {
         </Link>
       </div>
       <div className="visual my-5 lg:max-w-xl">
-        <img
-          className="rounded-md max-h-full"
-          src={HeroImg}
-          alt="CodeBook Hero Section"
-        />
+        {darkMode && (
+          <img
+            className="rounded-md max-h-full"
+            src={HeroImg}
+            alt="CodeBook Hero Section"
+          />
+        )}
+        {!darkMode && (
+          <img
+            className="rounded-md max-h-full"
+            src={LightImg}
+            alt="CodeBook Hero Section"
+          />
+        )}
       </div>
     </section>
   );

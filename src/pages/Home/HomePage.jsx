@@ -4,11 +4,11 @@ import { FeaturedProducts } from "./components/FeaturedProducts";
 import { Testimonials } from "./components/Testimonials";
 import { Faq } from "./components/Faq";
 
-export const HomePage = () => {
+export const HomePage = ({ darkMode }) => {
   useTitle("Access Latest Computer Science eBooks - CodeBook");
   return (
     <main>
-      <Hero />
+      <Hero darkMode={darkMode} />
       <FeaturedProducts />
       <Testimonials />
       <Faq />
