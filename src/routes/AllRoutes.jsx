@@ -1,5 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { ProductList, HomePage, ProductDetail } from "../pages";
+import {
+  ProductList,
+  HomePage,
+  ProductDetail,
+  Login,
+  Register,
+} from "../pages";
 
 export const AllRoutes = ({ darkMode }) => {
   return (
@@ -8,6 +14,9 @@ export const AllRoutes = ({ darkMode }) => {
         <Route path="/" element={<HomePage darkMode={darkMode} />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/:id" element={<ProductDetail />} />
+
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </>
   );

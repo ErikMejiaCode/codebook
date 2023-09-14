@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
+import { ClickAwayListener } from "@mui/material";
 import Logo from "../../assets/logo2.png";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
@@ -7,27 +8,14 @@ import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 export const Header = ({ darkMode, setDarkMode }) => {
   const [searchSection, setSearchSection] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const clickRef = useRef();
 
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      //If the menu is open and the clicked target is not within the menu, close the menu
-      if (
-        dropdown &&
-        clickRef.current &&
-        !clickRef.current.contains(e.target)
-      ) {
-        setDropdown(false);
-      }
-    };
+  const handleClick = () => {
+    setDropdown((prev) => !prev);
+  };
 
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      //Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [dropdown]);
+  const handleClickAway = () => {
+    setDropdown(false);
+  };
 
   return (
     <header>
@@ -55,12 +43,13 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 </span>
               </span>
             </Link>
-            <span
-              ref={clickRef}
-              onClick={() => setDropdown(!dropdown)}
-              className="dark:hover:text-slate-300 hover:text-gray-500 bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
-            ></span>
-            {dropdown && <DropdownLoggedIn />}
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <span
+                onClick={handleClick}
+                className="dark:hover:text-slate-300 hover:text-gray-500 bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
+              ></span>
+            </ClickAwayListener>
+            {dropdown && <DropdownLoggedOut />}
           </div>
         </div>
       </nav>

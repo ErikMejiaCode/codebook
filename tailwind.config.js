@@ -7,6 +7,7 @@ export default {
       colors: {
         dark: "#121212",
         darkAccent: "#282828",
+        darkGradient: "#181818",
       },
     },
   },

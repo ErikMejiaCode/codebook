@@ -18,7 +18,7 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className="App dark:bg-dark">
+    <div className="App dark:bg-gradient-to-t from-darkGradient to-dark">
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <AllRoutes darkMode={darkMode} />
       <Footer />
