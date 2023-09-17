@@ -244,6 +244,12 @@
       "password": "$2a$10$ZUEEO1lKMAVBC/Z6rN3u0eu5s7kv6pPG.QxUAoeIevGOBNAMkL.p.",
       "name": "Erik",
       "id": 1
+    },
+    {
+      "email": "nay@example.com",
+      "password": "$2a$10$NqfWim0SStQhJt03N7jDGOPQYed05CAZjmv96TFkz7sF4r0YYa2AO",
+      "name": "Nay",
+      "id": 2
     }
   ]
 }
