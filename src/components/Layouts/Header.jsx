@@ -4,8 +4,10 @@ import Logo from "../../assets/logo2.png";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
 import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
+import { useCart } from "../../context";
 
 export const Header = ({ darkMode, setDarkMode }) => {
+  const { cartList } = useCart();
   const [searchSection, setSearchSection] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const token = JSON.parse(sessionStorage.getItem("token"));
@@ -40,7 +42,7 @@ export const Header = ({ darkMode, setDarkMode }) => {
             <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
               <span className="dark:hover:text-slate-300 hover:text-gray-500 text-2xl bi bi-cart-fill relative">
                 <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
-                  0
+                  {cartList.length}
                 </span>
               </span>
             </Link>
