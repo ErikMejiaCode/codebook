@@ -8,6 +8,7 @@ import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 export const Header = ({ darkMode, setDarkMode }) => {
   const [searchSection, setSearchSection] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const token = JSON.parse(sessionStorage.getItem("token"));
 
   const handleClick = () => {
     setDropdown((prev) => !prev);
@@ -49,7 +50,7 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 className="dark:hover:text-slate-300 hover:text-gray-500 bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
               ></span>
             </ClickAwayListener>
-            {dropdown && <DropdownLoggedOut />}
+            {dropdown && (token ? <DropdownLoggedIn /> : <DropdownLoggedOut />)}
           </div>
         </div>
       </nav>
