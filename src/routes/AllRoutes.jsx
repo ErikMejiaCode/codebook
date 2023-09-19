@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { ProtectedRoute } from "./ProtectedRoute";
 import {
   ProductList,
   HomePage,
@@ -16,10 +17,17 @@ export const AllRoutes = ({ darkMode }) => {
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/:id" element={<ProductDetail />} />
 
-        <Route path="cart" element={<CartPage />} />
-
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+
+        <Route
+          path="cart"
+          element={
+            <ProtectedRoute>
+              <CartPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
