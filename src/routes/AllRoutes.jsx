@@ -7,6 +7,7 @@ import {
   Login,
   Register,
   CartPage,
+  OrderPage,
 } from "../pages";
 
 export const AllRoutes = ({ darkMode }) => {
@@ -25,6 +26,14 @@ export const AllRoutes = ({ darkMode }) => {
           element={
             <ProtectedRoute>
               <CartPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="order-summary"
+          element={
+            <ProtectedRoute>
+              <OrderPage />
             </ProtectedRoute>
           }
         />

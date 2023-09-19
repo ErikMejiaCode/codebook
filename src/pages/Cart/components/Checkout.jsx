@@ -6,7 +6,6 @@ export const Checkout = ({ setCheckout }) => {
   const navigate = useNavigate();
   const { cartList, total, clearCart } = useCart();
   const [user, setUser] = useState({});
-  const [data, setData] = useState({});
 
   const cbid = JSON.parse(sessionStorage.getItem("cbid"));
   const token = JSON.parse(sessionStorage.getItem("token"));
@@ -30,30 +29,33 @@ export const Checkout = ({ setCheckout }) => {
   async function handleOrderSubmit(event) {
     event.preventDefault();
 
-    const order = {
-      cartList: cartList,
-      amount_apid: total,
-      quantity: cartList.length,
-      user: {
-        name: event.target.name.value,
-        email: user.email,
-        id: user.id,
-      },
-    };
+    try {
+      const order = {
+        cartList: cartList,
+        amount_apid: total,
+        quantity: cartList.length,
+        user: {
+          name: event.target.name.value,
+          email: user.email,
+          id: user.id,
+        },
+      };
 
-    const response = await fetch(`http://localhost:3000/660/orders`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(order),
-    });
+      const response = await fetch(`http://localhost:3000/660/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(order),
+      });
 
-    const data = await response.json();
-    setData(data);
-    clearCart();
-    navigate("/");
+      const data = await response.json();
+      clearCart();
+      navigate("/order-summary", { state: { data: data, status: true } });
+    } catch (error) {
+      navigate("/order-summary", { state: { status: false, message: error } });
+    }
   }
 
   return (
