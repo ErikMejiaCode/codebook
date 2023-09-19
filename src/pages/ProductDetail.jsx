@@ -78,7 +78,10 @@ export const ProductDetail = () => {
               {!inCart && (
                 <button
                   onClick={() => addToCart(product)}
-                  className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800`}
+                  disabled={product.in_stock ? "" : "disabled"}
+                  className={`inline-flex items-center py-2 px-5 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 ${
+                    product.in_stock ? "cursor-pointer" : "cursor-not-allowed"
+                  }`}
                 >
                   Add To Cart <i className="ml-1 bi bi-plus-lg"></i>
                 </button>
