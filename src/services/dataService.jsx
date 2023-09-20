@@ -16,7 +16,7 @@ export async function getUser() {
   };
 
   const response = await fetch(
-    `http://localhost:3000/600/users/${browserData.cbid}`,
+    `${import.meta.env.VITE_REACT_APP_HOST}/600/users/${browserData.cbid}`,
     requestOptions
   );
   if (!response.ok) {
@@ -52,7 +52,7 @@ export async function createOrder(cartList, total, user) {
   };
 
   const response = await fetch(
-    `http://localhost:3000/660/orders`,
+    `${import.meta.env.VITE_REACT_APP_HOST}/660/orders`,
     requestOptions
   );
 
@@ -76,7 +76,9 @@ export async function getUserOrders() {
     },
   };
   const response = await fetch(
-    `http://localhost:3000/660/orders?user.id=${browserData.cbid}`,
+    `${import.meta.env.VITE_REACT_APP_HOST}/660/orders?user.id=${
+      browserData.cbid
+    }`,
     requestOptions
   );
 

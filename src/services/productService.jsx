@@ -1,6 +1,6 @@
 export async function getProductList(searchTerm) {
   const response = await fetch(
-    `http://localhost:3000/444/products?name_like=${
+    `${import.meta.env.VITE_REACT_APP_HOST}/444/products?name_like=${
       searchTerm ? searchTerm : ""
     }`
   );
@@ -15,7 +15,9 @@ export async function getProductList(searchTerm) {
 }
 
 export async function getProduct(id) {
-  const response = await fetch(`http://localhost:3000/444/products/${id}`);
+  const response = await fetch(
+    `${import.meta.env.VITE_REACT_APP_HOST}/444/products/${id}`
+  );
   if (!response.ok) {
     throw {
       message: response.statusText,
@@ -27,7 +29,9 @@ export async function getProduct(id) {
 }
 
 export async function getFeaturedList() {
-  const response = await fetch("http://localhost:3000/444/featured_products");
+  const response = await fetch(
+    `${import.meta.env.VITE_REACT_APP_HOST}/444/featured_products`
+  );
   if (!response.ok) {
     throw {
       message: response.statusText,

@@ -5,7 +5,10 @@ export async function login(authDetail) {
     body: JSON.stringify(authDetail),
   };
 
-  const response = await fetch("http://localhost:3000/login", responseOptions);
+  const response = await fetch(
+    `${import.meta.env.VITE_REACT_APP_HOST}/login`,
+    responseOptions
+  );
   if (!response.ok) {
     throw {
       message: response.statusText,
@@ -29,7 +32,10 @@ export async function register(authDetail) {
     body: JSON.stringify(authDetail),
   };
 
-  const response = await fetch("http://localhost:3000/register", requestOption);
+  const response = await fetch(
+    `${import.meta.env.VITE_REACT_APP_HOST}/register`,
+    requestOption
+  );
 
   if (!response.ok) {
     throw {
