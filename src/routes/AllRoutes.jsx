@@ -9,6 +9,7 @@ import {
   CartPage,
   OrderPage,
   DashboardPage,
+  PageNotFound,
 } from "../pages";
 
 export const AllRoutes = ({ darkMode }) => {
@@ -46,6 +47,8 @@ export const AllRoutes = ({ darkMode }) => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
