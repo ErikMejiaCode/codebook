@@ -7,10 +7,10 @@ import { FilterBar } from "./components/FilterBar";
 
 import { useFilter } from "../../context";
 import { getProductList } from "../../services";
+import { toast } from "react-toastify";
 
 export const ProductList = () => {
   const { products, initialProductList } = useFilter();
-
   const [show, setShow] = useState(false);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
@@ -19,8 +19,16 @@ export const ProductList = () => {
 
   useEffect(() => {
     async function fetchProducts() {
-      const data = await getProductList(searchTerm);
-      initialProductList(data);
+      try {
+        const data = await getProductList(searchTerm);
+        initialProductList(data);
+      } catch (error) {
+        toast.error(error.message, {
+          closeButton: true,
+          position: "bottom-center",
+          closeOnClick: true,
+        });
+      }
     }
     fetchProducts();
   }, [searchTerm]);

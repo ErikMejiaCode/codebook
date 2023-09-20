@@ -587,6 +587,18 @@
       "password": "$2a$10$eBeTmLd3v05bwoZpHIrJ.uHGtcCLgZus1kAbcs..PvYobJbO5wzbq",
       "name": "Alex",
       "id": 3
+    },
+    {
+      "email": "test@example.com",
+      "password": "$2a$10$hRaLgnx9824iXelnq7ThW.Rw5ZpsQaaLUalsYUidQ/guG/NzPSqXW",
+      "name": "Test",
+      "id": 4
+    },
+    {
+      "email": "test2@example.com",
+      "password": "$2a$10$gQMqRjZHLEpHqEZtCobT2OcG7cf.ro4cJ7G7yZGkJlhsj9USq5bFu",
+      "name": "Test2",
+      "id": 5
     }
   ]
 }

@@ -6,6 +6,12 @@ export async function login(authDetail) {
   };
 
   const response = await fetch("http://localhost:3000/login", responseOptions);
+  if (!response.ok) {
+    throw {
+      message: response.statusText,
+      status: response.status,
+    };
+  }
   const data = await response.json();
 
   if (data.accessToken) {
@@ -24,6 +30,14 @@ export async function register(authDetail) {
   };
 
   const response = await fetch("http://localhost:3000/register", requestOption);
+
+  if (!response.ok) {
+    throw {
+      message: response.statusText,
+      status: response.status,
+    };
+  }
+
   const data = await response.json();
 
   if (data.accessToken) {
