@@ -2,7 +2,6 @@ import { useTitle } from "../hooks/useTitle";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { Rating } from "../components";
 import { useCart } from "../context";
 import { getProduct } from "../services";
