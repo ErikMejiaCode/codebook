@@ -21,7 +21,7 @@ export const DropdownLoggedIn = () => {
       }
     }
     fetchDate();
-  }, []);
+  }, []); //eslint-disable-line
 
   function handleLogOut() {
     logout();
